@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jardín – Ka</title>
+<title>Jardín Mágico – Ka</title>
 
 <style>
 /* ===== CUERPO Y FONDO ===== */
@@ -45,9 +45,7 @@ body {
   transition: transform 0.3s;
   font-weight: bold;
 }
-
 .btn:hover { transform: scale(1.1); }
-
 .izquierda { left: 5%; }
 .derecha { right: 5%; }
 
@@ -58,7 +56,6 @@ body {
   width: 100%;
   text-align: center;
 }
-
 .entrar {
   padding: 12px 30px;
   border-radius: 25px;
@@ -75,7 +72,6 @@ body {
   height: 100%;
   pointer-events: none;
 }
-
 .particulas span {
   position: absolute;
   width: 6px;
@@ -85,7 +81,6 @@ body {
   opacity: 0.7;
   animation: flotar 6s linear infinite;
 }
-
 @keyframes flotar {
   0% { transform: translateY(100px); opacity: 0; }
   50% { opacity: 1; }
@@ -94,19 +89,17 @@ body {
 
 /* ===== HOJAS ===== */
 .hojas { position: absolute; width: 100%; height: 100%; pointer-events: none; }
-
 .hoja {
   position: absolute;
   opacity: 0.9;
   animation: flotarHoja 6s ease-in-out infinite;
 }
-
-.h1 { top: -10px; left: -10px; width: 260px; }
-.h2 { top: -10px; right: -10px; width: 260px; transform: scaleX(-1); }
-.h3 { bottom: -10px; left: -10px; width: 260px; }
-.h4 { bottom: -10px; right: -10px; width: 260px; transform: scaleX(-1); }
-.h5 { top: 30%; left: -20px; width: 220px; }
-.h6 { top: 30%; right: -20px; width: 220px; transform: scaleX(-1); }
+.h1 { top: -10px; left: -10px; width: 260px; z-index: 3; }
+.h2 { top: -10px; right: -10px; width: 260px; transform: scaleX(-1); z-index: 3; }
+.h3 { bottom: -10px; left: -10px; width: 260px; z-index: 3; }
+.h4 { bottom: -10px; right: -10px; width: 260px; transform: scaleX(-1); z-index: 3; }
+.h5 { top: 30%; left: -20px; width: 220px; z-index: 3; }
+.h6 { top: 30%; right: -20px; width: 220px; transform: scaleX(-1); z-index: 3; }
 
 @keyframes flotarHoja {
   0% { transform: translateY(0px) rotate(0deg); }
@@ -121,101 +114,82 @@ body {
 }
 
 /* ===== LUCIERNAGAS ===== */
-.luciernagas {
+.luciernagas, .libelulas {
   position: absolute;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 5;
+  z-index: 4;
 }
-
-.luz {
+.luz, .img-luciernaga {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #fff6b0;
   border-radius: 50%;
-  box-shadow: 
-    0 0 10px #fff6b0,
-    0 0 20px #fff6b0,
-    0 0 40px #ffd700;
   opacity: 0;
-  animation: luciernagaLuz 8s infinite ease-in-out;
+  animation: alas 1s ease-in-out infinite;
 }
-
+.luz {
+  width: 16px; height:16px;
+  background: #fff6b0;
+  box-shadow: 0 0 10px #fff6b0,0 0 20px #fff6b0,0 0 40px #ffd700;
+  animation: luciernagaLuz 8s infinite ease-in-out, alas 1s ease-in-out infinite;
+}
 .img-luciernaga {
-  position: absolute;
-  width: 55px;
-  height: 55px;
+  width: 55px; height:55px;
   background-image: url("luciernaga.png");
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0;
-  animation: luciernagaImg 10s infinite ease-in-out;
   filter: drop-shadow(0 0 10px #ffd700);
+  animation: luciernagaImg 10s infinite ease-in-out, alas 1s ease-in-out infinite;
 }
-
 @keyframes luciernagaLuz {
-  0% { transform: translateY(40px) scale(0.5); opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: translateY(-200px) scale(0.5); opacity: 0; }
+  0% { transform: translateY(40px) scale(0.5); opacity:0; }
+  20% { opacity:1; }
+  80% { opacity:1; }
+  100% { transform: translateY(-200px) scale(0.5); opacity:0; }
 }
-
 @keyframes luciernagaImg {
-  0% { transform: translateY(50px) scale(0.6); opacity: 0; }
-  30% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { transform: translateY(-220px) scale(0.6); opacity: 0; }
+  0% { transform: translateX(-50px) translateY(50px) scale(0.6); opacity:0; }
+  30% { opacity:1; }
+  70% { opacity:1; }
+  100% { transform: translateX(110vw) translateY(-220px) scale(0.6); opacity:0; }
+}
+@keyframes alas {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(1.2); }
+  100% { transform: scaleY(1); }
 }
 
 /* ===== LIBELULAS ===== */
-.libelulas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 6;
-}
-
 .libelula {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 60px; height: 60px;
   background-image: url("libelula.png");
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.9;
   animation: volar 12s linear infinite, aleteo 1s ease-in-out infinite;
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.6));
+  z-index: 5;
 }
-
-@keyframes aleteo {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
+@keyframes aleteo {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
 @keyframes volar {
-  0% { transform: translateX(-100px) translateY(0px) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  50% { transform: translateX(50vw) translateY(-30px) rotate(5deg); }
-  100% { transform: translateX(110vw) translateY(20px) rotate(-5deg); opacity: 0; }
+  0%{transform:translateX(-100px) translateY(0px) rotate(0deg); opacity:0;}
+  10%{opacity:1;}
+  50%{transform:translateX(50vw) translateY(-30px) rotate(5deg);}
+  100%{transform:translateX(110vw) translateY(20px) rotate(-5deg); opacity:0;}
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .tunel { animation: moverFondo 80s linear infinite; }
-  .btn { top: 35%; padding: 10px 15px; font-size: 14px; }
-  .izquierda { left: 3%; }
-  .derecha { right: 3%; }
-  .entrar { padding: 10px 20px; font-size: 14px; }
+@media(max-width:768px){
+  .tunel{animation:moverFondo 80s linear infinite;}
+  .btn{top:35%;padding:10px 15px;font-size:14px;}
+  .izquierda{left:3%;}
+  .derecha{right:3%;}
+  .entrar{padding:10px 20px;font-size:14px;}
 }
 </style>
 </head>
-
 <body>
-
 <div class="tunel">
 
   <!-- HOJAS -->
@@ -245,61 +219,58 @@ body {
   <div class="tepuy-fondo">
     <button class="entrar" onclick="entrar()">Entrar al Tepuy</button>
   </div>
-
 </div>
 
 <script>
-// BOTON ENTRAR
-function entrar() { window.location.href = "index.html"; }
+function entrar(){window.location.href="index.html";}
 
-// PARTICULAS DORADAS
-const contenedor = document.querySelector('.particulas');
-for (let i = 0; i < 30; i++) {
-  let p = document.createElement('span');
-  p.style.left = Math.random() * 100 + 'vw';
-  p.style.animationDuration = (3 + Math.random() * 5) + 's';
-  p.style.opacity = Math.random();
+// PARTICULAS
+const contenedor=document.querySelector('.particulas');
+for(let i=0;i<30;i++){
+  let p=document.createElement('span');
+  p.style.left=Math.random()*100+'vw';
+  p.style.animationDuration=(3+Math.random()*5)+'s';
+  p.style.opacity=Math.random();
   contenedor.appendChild(p);
 }
 
 // LUCIERNAGAS
-const contLuciernagas = document.querySelector('.luciernagas');
-for (let i = 0; i < 20; i++) {
-  let l = document.createElement('span');
+const contLuciernagas=document.querySelector('.luciernagas');
+for(let i=0;i<20;i++){
+  let l=document.createElement('span');
   l.classList.add("luz");
-  l.style.left = Math.random() * 100 + '%';
-  let sizeLuz = 10 + Math.random() * 10;
-  l.style.width = sizeLuz + 'px';
-  l.style.height = sizeLuz + 'px';
-  l.style.top = Math.random() * 100 + '%';
-  l.style.animationDuration = (6 + Math.random() * 4) + 's';
-  l.style.animationDelay = Math.random() * 5 + 's';
+  l.style.left=Math.random()*100+'%';
+  let sizeLuz=10+Math.random()*10;
+  l.style.width=sizeLuz+'px';
+  l.style.height=sizeLuz+'px';
+  l.style.top=Math.random()*100+'%';
+  l.style.animationDuration=(6+Math.random()*4)+'s';
+  l.style.animationDelay=Math.random()*5+'s';
   contLuciernagas.appendChild(l);
 }
-for (let i = 0; i < 6; i++) {
-  let img = document.createElement('span');
+for(let i=0;i<6;i++){
+  let img=document.createElement('span');
   img.classList.add("img-luciernaga");
-  img.style.left = Math.random() * 100 + '%';
-  let size = 40 + Math.random() * 30;
-  img.style.width = size + 'px';
-  img.style.height = size + 'px';
-  img.style.top = Math.random() * 100 + '%';
-  img.style.animationDuration = (8 + Math.random() * 4) + 's';
-  img.style.animationDelay = Math.random() * 5 + 's';
+  img.style.left=Math.random()*100+'%';
+  let size=40+Math.random()*30;
+  img.style.width=size+'px';
+  img.style.height=size+'px';
+  img.style.top=Math.random()*100+'%';
+  img.style.animationDuration=(8+Math.random()*4)+'s';
+  img.style.animationDelay=Math.random()*5+'s';
   contLuciernagas.appendChild(img);
 }
 
 // LIBELULAS
-const contLibelulas = document.querySelector('.libelulas');
-for (let i = 0; i < 4; i++) {
-  let d = document.createElement('span');
+const contLibelulas=document.querySelector('.libelulas');
+for(let i=0;i<4;i++){
+  let d=document.createElement('span');
   d.classList.add("libelula");
-  d.style.top = Math.random() * 80 + '%';
-  d.style.animationDuration = (10 + Math.random() * 6) + 's';
-  d.style.animationDelay = Math.random() * 10 + 's';
+  d.style.top=Math.random()*80+'%';
+  d.style.animationDuration=(10+Math.random()*6)+'s';
+  d.style.animationDelay=Math.random()*10+'s';
   contLibelulas.appendChild(d);
 }
 </script>
-
 </body>
 </html>
