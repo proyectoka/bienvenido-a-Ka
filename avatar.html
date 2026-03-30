@@ -16,6 +16,7 @@
       justify-content: center;
       height: 100vh;
       color: white;
+      overflow: hidden;
     }
 
     /* PANEL DEL AVATAR */
@@ -28,6 +29,9 @@
       color: white;
       max-width: 350px;
       width: 90%;
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 2;
     }
 
     /* AVATAR */
@@ -87,10 +91,36 @@
       text-align: center;
       font-size: 16px;
     }
+
+    /* PARTICULAS DE FONDO (como Jardín) */
+    .particulas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .particulas span {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #FDBE50;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: flotar 6s linear infinite;
+    }
+    @keyframes flotar {
+      0% { transform: translateY(100px); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-200px); opacity: 0; }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- PARTICULAS DE FONDO -->
+  <div class="particulas"></div>
 
   <div class="avatar-panel">
     <h2>Crea tu esencia ✨</h2>
@@ -142,8 +172,21 @@
       localStorage.setItem("nombreAvatar", nombre);
       localStorage.setItem("personajeAvatar", personaje);
 
-      // Redirige a tu página principal
+      // Redirige a la página principal del Jardín
       window.location.href = "index.html";
+    }
+
+    // GENERAR PARTICULAS DE FONDO
+    const contenedor = document.querySelector('.particulas');
+    for (let i = 0; i < 20; i++) {
+      let l = document.createElement('span');
+      l.style.left = Math.random() * 100 + '%';
+      l.style.top = Math.random() * 100 + '%';
+      let size = 4 + Math.random() * 6;
+      l.style.width = size + 'px';
+      l.style.height = size + 'px';
+      l.style.animationDuration = (4 + Math.random() * 4) + 's';
+      contenedor.appendChild(l);
     }
   </script>
 
