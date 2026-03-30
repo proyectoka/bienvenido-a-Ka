@@ -6,7 +6,6 @@
 <title>Jardín Mágico – Ka</title>
 
 <style>
-/* ===== CUERPO Y FONDO ===== */
 body {
   margin: 0;
   height: 100vh;
@@ -19,7 +18,6 @@ body {
   color: white;
 }
 
-/* ===== TUNEL ===== */
 .tunel {
   width: 80%;
   height: 80%;
@@ -33,7 +31,6 @@ body {
   animation: moverFondo 60s linear infinite;
 }
 
-/* ===== BOTONES ===== */
 .btn {
   position: absolute;
   top: 40%;
@@ -49,7 +46,6 @@ body {
 .izquierda { left: 5%; }
 .derecha { right: 5%; }
 
-/* BOTON ENTRAR */
 .tepuy-fondo {
   position: absolute;
   bottom: 10%;
@@ -65,7 +61,7 @@ body {
   font-weight: bold;
 }
 
-/* ===== PARTICULAS ===== */
+/* PARTICULAS */
 .particulas {
   position: absolute;
   width: 100%;
@@ -87,19 +83,15 @@ body {
   100% { transform: translateY(-200px); opacity: 0; }
 }
 
-/* ===== HOJAS ===== */
-.hojas { position: absolute; width: 100%; height: 100%; pointer-events: none; }
-.hoja {
-  position: absolute;
-  opacity: 0.9;
-  animation: flotarHoja 6s ease-in-out infinite;
-}
-.h1 { top: -10px; left: -10px; width: 260px; z-index: 3; }
-.h2 { top: -10px; right: -10px; width: 260px; transform: scaleX(-1); z-index: 3; }
-.h3 { bottom: -10px; left: -10px; width: 260px; z-index: 3; }
-.h4 { bottom: -10px; right: -10px; width: 260px; transform: scaleX(-1); z-index: 3; }
-.h5 { top: 30%; left: -20px; width: 220px; z-index: 3; }
-.h6 { top: 30%; right: -20px; width: 220px; transform: scaleX(-1); z-index: 3; }
+/* HOJAS */
+.hojas { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+.hoja { position: absolute; opacity: 0.9; animation: flotarHoja 6s ease-in-out infinite; }
+.h1 { top: -10px; left: -10px; width: 260px; }
+.h2 { top: -10px; right: -10px; width: 260px; transform: scaleX(-1); }
+.h3 { bottom: -10px; left: -10px; width: 260px; }
+.h4 { bottom: -10px; right: -10px; width: 260px; transform: scaleX(-1); }
+.h5 { top: 30%; left: -20px; width: 220px; }
+.h6 { top: 30%; right: -20px; width: 220px; }
 
 @keyframes flotarHoja {
   0% { transform: translateY(0px) rotate(0deg); }
@@ -107,25 +99,15 @@ body {
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
-/* ===== MOVIMIENTO FONDO ===== */
-@keyframes moverFondo {
-  0% { background-position: center 0%; }
-  100% { background-position: center 100%; }
-}
+/* FONDO */
+@keyframes moverFondo { 0% { background-position: center 0%; } 100% { background-position: center 100%; } }
 
-/* ===== LUCIERNAGAS ===== */
-.luciernagas, .libelulas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 4;
-}
+/* LUCIFERNAGAS */
+.luciernagas { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
 .luz, .img-luciernaga {
   position: absolute;
   border-radius: 50%;
   opacity: 0;
-  animation: alas 1s ease-in-out infinite;
 }
 .luz {
   width: 16px; height:16px;
@@ -141,6 +123,7 @@ body {
   filter: drop-shadow(0 0 10px #ffd700);
   animation: luciernagaImg 10s infinite ease-in-out, alas 1s ease-in-out infinite;
 }
+
 @keyframes luciernagaLuz {
   0% { transform: translateY(40px) scale(0.5); opacity:0; }
   20% { opacity:1; }
@@ -159,7 +142,8 @@ body {
   100% { transform: scaleY(1); }
 }
 
-/* ===== LIBELULAS ===== */
+/* LIBELULAS */
+.libelulas { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 .libelula {
   position: absolute;
   width: 60px; height: 60px;
@@ -169,8 +153,8 @@ body {
   opacity: 0.9;
   animation: volar 12s linear infinite, aleteo 1s ease-in-out infinite;
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.6));
-  z-index: 5;
 }
+
 @keyframes aleteo {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
 @keyframes volar {
   0%{transform:translateX(-100px) translateY(0px) rotate(0deg); opacity:0;}
@@ -179,7 +163,7 @@ body {
   100%{transform:translateX(110vw) translateY(20px) rotate(-5deg); opacity:0;}
 }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 @media(max-width:768px){
   .tunel{animation:moverFondo 80s linear infinite;}
   .btn{top:35%;padding:10px 15px;font-size:14px;}
@@ -192,7 +176,6 @@ body {
 <body>
 <div class="tunel">
 
-  <!-- HOJAS -->
   <div class="hojas">
     <img src="hoja1.png" class="hoja h1">
     <img src="hoja2.png" class="hoja h2">
@@ -202,23 +185,17 @@ body {
     <img src="hoja6.png" class="hoja h6">
   </div>
 
-  <!-- PARTICULAS -->
   <div class="particulas"></div>
-
-  <!-- LUCIERNAGAS -->
   <div class="luciernagas"></div>
-
-  <!-- LIBELULAS -->
   <div class="libelulas"></div>
 
-  <!-- BOTONES -->
   <button class="btn izquierda" onclick="window.location.href='avatar.html'">Crear Avatar</button>
   <button class="btn derecha">Mapa</button>
 
-  <!-- BOTON ENTRAR -->
   <div class="tepuy-fondo">
     <button class="entrar" onclick="entrar()">Entrar al Tepuy</button>
   </div>
+
 </div>
 
 <script>
@@ -234,7 +211,7 @@ for(let i=0;i<30;i++){
   contenedor.appendChild(p);
 }
 
-// LUCIERNAGAS
+// LUCIFERNAGAS
 const contLuciernagas=document.querySelector('.luciernagas');
 for(let i=0;i<20;i++){
   let l=document.createElement('span');
