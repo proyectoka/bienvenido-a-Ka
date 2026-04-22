@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yelioki Central – Universo Ka</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #0f1d2e;
+}
+
+/* FONDO */
+.yelioki {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-image: url("yelioki-fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* CAPA SUAVE */
+.capa {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(10,20,30,0.28);
+}
+
+/* TITULO */
+.titulo {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  z-index: 5;
+}
+
+.titulo h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.titulo p {
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+/* PRODUCTOS */
+.producto {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.4s;
+  z-index: 4;
+}
+
+.producto:hover {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 25px #FFD700);
+}
+
+/* POSICIONES */
+.p1 { top: 20%; left: 10%; }
+.p2 { top: 20%; right: 10%; }
+
+.p3 { top: 48%; left: 8%; }
+.p4 { top: 48%; right: 8%; }
+
+.p5 { bottom: 14%; left: 22%; }
+.p6 { bottom: 14%; right: 22%; }
+
+/* CENTRO */
+.yelioki-central {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background-image: url("yelioki-central.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 3;
+  animation: flotar 4s ease-in-out infinite;
+}
+
+@keyframes flotar {
+  0%,100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-10px); }
+}
+
+/* TOOLTIP */
+.tooltip {
+  position: absolute;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+/* 🌟 AVATAR (MOVIMIENTO SUAVE ACTIVADO) */
+.avatar-usuario {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 8;
+
+  transition: left 1s ease, top 1s ease, transform 1s ease;
+}
+
+.nombre-usuario {
+  position: absolute;
+  bottom: 12%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  z-index: 8;
+}
+
+/* KA */
+#ka-ui {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+}
+
+#ka-luz {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #48B2BA, transparent);
+  box-shadow: 0 0 30px #48B2BA;
+  margin: auto;
+}
+
+#ka-cuadro {
+  margin-top: 10px;
+  background: rgba(0,0,0,0.45);
+  padding: 14px;
+  border-radius: 16px;
+  color: white;
+  width: 340px;
+  backdrop-filter: blur(6px);
+}
+
+#ka-cuadro button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #FDBE50;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="yelioki">
+
+<div class="capa"></div>
+
+<div class="titulo">
+  <h1>Yelioki Central ✨</h1>
+  <p>Donde las ideas se convierten en magia</p>
+</div>
+
+<div class="yelioki-central"></div>
+
+<!-- PRODUCTOS -->
+<div class="producto p1"
+style="background-image:url('invitaciones-premium.png');"
+data-nombre="Invitaciones Premium"
+data-destino="invitaciones-premium.html"></div><div class="producto p2" style="background-image:url('llaves-magicas.png');" data-nombre="Llaves Mitológicas"></div>
+<div class="producto p3" style="background-image:url('toppers.png');" data-nombre="Topper Creativos"></div>
+<div class="producto p4" style="background-image:url('impresion3d.png');" data-nombre="Impresión 3D"></div>
+<div class="producto p5" style="background-image:url('digitales.png');" data-nombre="Servicios Digitales"></div>
+<div class="producto p6" style="background-image:url('pedidos.png');" data-nombre="Pedidos Especiales"></div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<!-- AVATAR -->
+<div class="avatar-usuario" id="avatarUsuario"></div>
+<div class="nombre-usuario" id="nombreUsuario"></div>
+
+<!-- KA -->
+<div id="ka-ui">
+  <div id="ka-luz"></div>
+  <div id="ka-cuadro">
+    <p id="ka-texto">Bienvenida… este lugar nació de tu propia esencia 💛</p>
+    <button onclick="siguienteKa()">Continuar</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+
+const tooltip = document.getElementById("tooltip");
+const avatarUsuario = document.getElementById("avatarUsuario");
+
+/* PRODUCTOS */
+document.querySelectorAll(".producto").forEach(producto => {
+
+  producto.addEventListener("mouseenter", (e) => {
+    tooltip.innerText = producto.dataset.nombre;
+    tooltip.style.left = e.pageX + "px";
+    tooltip.style.top = e.pageY + "px";
+    tooltip.style.opacity = 1;
+  });
+
+  producto.addEventListener("mousemove", (e) => {
+    tooltip.style.left = e.pageX + "px";
+    tooltip.style.top = e.pageY + "px";
+  });
+
+  producto.addEventListener("mouseleave", () => {
+    tooltip.style.opacity = 0;
+  });
+producto.addEventListener("click", () => {
+
+  const destino = producto.getAttribute("data-destino");
+
+  const rect = producto.getBoundingClientRect();
+
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+
+  avatarUsuario.style.bottom = "auto";
+  avatarUsuario.style.left = x + "px";
+  avatarUsuario.style.top = y + "px";
+  avatarUsuario.style.transform = "translate(-50%, -50%)";
+
+  if (destino) {
+    setTimeout(() => {
+      window.location.href = destino;
+    }, 900);
+  }
+
+});
+
+  /* 🌟 MOVIMIENTO SUAVE DEL AVATAR */
+  producto.addEventListener("click", () => {
+
+    const rect = producto.getBoundingClientRect();
+
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    avatarUsuario.style.bottom = "auto";
+
+    avatarUsuario.style.left = x + "px";
+    avatarUsuario.style.top = y + "px";
+
+    avatarUsuario.style.transform = "translate(-50%, -50%)";
+
+  });
+
+});
+
+/* AVATAR */
+const avatar = document.getElementById("avatarUsuario");
+const nombre = document.getElementById("nombreUsuario");
+
+const nombreGuardado = localStorage.getItem("nombreAvatar");
+const personaje = localStorage.getItem("personajeAvatar");
+
+nombre.textContent = nombreGuardado || "Viajera";
+
+if (personaje) {
+  const img = document.createElement("img");
+  img.src = personaje;
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.borderRadius = "50%";
+  avatar.appendChild(img);
+} else {
+  avatar.style.background = "#FDBE50";
+}
+
+/* KA */
+let mensajes = [
+  "Bienvenida… este lugar nació de tu propia esencia 💛",
+  "Aquí cada creación cuenta una historia…",
+  "Cada sobre, cada llave, cada detalle… lleva tu energía ✨",
+  "Yelioki no vende productos… crea magia 🌙"
+];
+
+let paso = 0;
+
+function siguienteKa() {
+  paso++;
+  if (paso < mensajes.length) {
+    document.getElementById("ka-texto").innerText = mensajes[paso];
+  } else {
+    document.getElementById("ka-cuadro").style.display = "none";
+  }
+}
+
+/* SONIDO */
+window.addEventListener("load", () => {
+  document.body.addEventListener("click", () => {
+    const audio = document.getElementById("sonidoAmbiente");
+    audio.play().catch(() => {});
+  }, { once: true });
+});
+
+</script>
+
+<audio id="sonidoAmbiente" loop preload="auto">
+  <source src="bosque.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>

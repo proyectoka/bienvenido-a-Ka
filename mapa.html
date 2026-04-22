@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tepuy Central – Universo Ka</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  overflow: hidden;
+  background: linear-gradient(to bottom, #0d1f2d, #1e4d4f, #2b6f72);
+  height: 100vh;
+}
+
+/* FONDO MÁGICO */
+.mapa {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-image: url("tepuy-fondo.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* NIEBLA */
+.niebla {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent);
+  animation: flotar 20s infinite linear;
+  opacity: 0.5;
+}
+
+@keyframes flotar {
+  from {
+    transform: translate(-10%, -10%);
+  }
+  to {
+    transform: translate(10%, 10%);
+  }
+}
+
+/* PORTAL CENTRAL */
+.portal-central {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+
+  background-image: url("tepuy-ka.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 2;
+  animation: tepuyVivo 4s ease-in-out infinite;
+}
+
+@keyframes tepuyVivo {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1) translateY(0px);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.05) translateY(-10px);
+  }
+}
+/* ZONAS CON ICONOS PNG */
+.zona {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.4s;
+  z-index: 3;
+}
+
+.zona:hover {
+  transform: scale(1.18);
+  filter: drop-shadow(0 0 30px #FFD700);
+}
+
+/* POSICIONES */
+.z1 { top: 15%; left: 25%; }
+.z2 { top: 20%; right: 20%; }
+.z3 { top: 55%; left: 15%; }
+.z4 { top: 60%; right: 18%; }
+.z5 { bottom: 10%; left: 30%; }
+.z6 { bottom: 8%; right: 28%; }
+
+/* TOOLTIP */
+.tooltip {
+  position: absolute;
+  padding: 8px 14px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+/* AVATAR */
+.avatar-usuario {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 5;
+  transition: all 1s ease;
+}
+
+.nombre-usuario {
+  position: absolute;
+  bottom: 4%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  z-index: 5;
+}
+
+/* KA */
+#ka-ui {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+}
+
+#ka-luz {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #48B2BA, transparent);
+  box-shadow: 0 0 30px #48B2BA;
+  margin: auto;
+}
+
+#ka-cuadro {
+  margin-top: 10px;
+  background: rgba(0,0,0,0.45);
+  padding: 14px;
+  border-radius: 15px;
+  color: white;
+  width: 320px;
+  backdrop-filter: blur(6px);
+}
+
+#ka-cuadro button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #FDBE50;
+  cursor: pointer;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+
+  .zona {
+    width: 140px;
+    height: 140px;
+  }
+
+  .z1 { top: 10%; left: 15%; }
+  .z2 { top: 12%; right: 15%; }
+
+  .z3 { top: 42%; left: 6%; }
+  .z4 { top: 44%; right: 6%; }
+
+  .z5 { bottom: 26%; left: 15%; }
+  .z6 { bottom: 26%; right: 15%; }
+
+  .portal-central {
+    width: 190px;
+    height: 190px;
+    top: 38%;
+  }
+
+  #ka-ui {
+    bottom: 8%;
+    transform: translateX(-50%) scale(0.92);
+  }
+
+  .avatar-usuario {
+    bottom: 20%;
+    width: 55px;
+    height: 55px;
+  }
+
+  .nombre-usuario {
+    bottom: 15%;
+    font-size: 12px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="mapa">
+
+  <div class="niebla"></div>
+
+  <!-- PORTAL CENTRAL -->
+  <div class="portal-central"></div>
+
+  <!-- ZONAS -->
+  <div class="zona z1"
+    style="background-image: url('jardin-cristales.png');"
+    data-nombre="Jardín de Cristales"
+    data-destino="jardin.html"></div>
+
+  <div class="zona z2"
+    style="background-image: url('galeria-magica.png');"
+    data-nombre="Galería de Tiendas Mágicas"
+    data-destino="tienda.html"></div>
+
+  <div class="zona z3"
+    style="background-image: url('guardianes.png');"
+    data-nombre="Plaza de Guardianes"
+    data-destino="guardianes.html"></div>
+
+  <div class="zona z4"
+    style="background-image: url('biblioteca-cielo.png');"
+    data-nombre="Biblioteca del Cielo"
+    data-destino="biblioteca.html"></div>
+
+  <div class="zona z5"
+    style="background-image: url('estacion-interdimensional.png');"
+    data-nombre="Estación Interdimensional"
+    data-destino="portales.html"></div>
+
+  <div class="zona z6"
+    style="background-image: url('santuario-ka.png');"
+    data-nombre="Santuario de Ka"
+    data-destino="santuario.html"></div>
+
+  <!-- AVATAR -->
+  <div class="avatar-usuario" id="avatarUsuario"></div>
+  <div class="nombre-usuario" id="nombreUsuario"></div>
+
+  <!-- KA -->
+  <div id="ka-ui">
+    <div id="ka-luz"></div>
+
+    <div id="ka-cuadro">
+      <p id="ka-texto">Bienvenida al Tepuy Central… el corazón del Universo ✨</p>
+      <button onclick="siguienteKa()">Continuar</button>
+    </div>
+  </div>
+
+  <!-- TOOLTIP -->
+  <div class="tooltip" id="tooltip"></div>
+
+</div>
+
+<script>
+
+/* TOOLTIP + MOVIMIENTO */
+
+const tooltip = document.getElementById("tooltip");
+const avatarUsuario = document.getElementById("avatarUsuario");
+
+document.querySelectorAll(".zona").forEach(zona => {
+
+  zona.addEventListener("mouseenter", (e) => {
+    tooltip.innerText = zona.dataset.nombre;
+    tooltip.style.left = e.pageX + "px";
+    tooltip.style.top = e.pageY + "px";
+    tooltip.style.opacity = 1;
+  });
+
+  zona.addEventListener("mousemove", (e) => {
+    tooltip.style.left = e.pageX + "px";
+    tooltip.style.top = e.pageY + "px";
+  });
+
+  zona.addEventListener("mouseleave", () => {
+    tooltip.style.opacity = 0;
+  });
+
+  zona.addEventListener("click", () => {
+
+    const rect = zona.getBoundingClientRect();
+
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    avatarUsuario.style.left = x + "px";
+    avatarUsuario.style.top = y + "px";
+
+    const destino = zona.getAttribute("data-destino");
+
+    setTimeout(() => {
+      if (destino) {
+        window.location.href = destino;
+      }
+    }, 1200);
+
+  });
+
+});
+
+/* AVATAR DEL USUARIO */
+
+const avatar = document.getElementById("avatarUsuario");
+const nombre = document.getElementById("nombreUsuario");
+
+const nombreGuardado = localStorage.getItem("nombreAvatar");
+const personaje = localStorage.getItem("personajeAvatar");
+
+nombre.textContent = nombreGuardado || "Viajera";
+
+if (personaje) {
+  const img = document.createElement("img");
+  img.src = personaje;
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.borderRadius = "50%";
+  avatar.appendChild(img);
+} else {
+  avatar.style.background = "#FDBE50";
+}
+
+/* MENSAJES DE KA */
+
+let mensajes = [
+  `Bienvenida, ${nombreGuardado || "Viajera"} ✨`,
+  "Este es el Tepuy Central…",
+  "Aquí nacen todos los caminos del universo 🌙",
+  "Cada luz responde a tu energía…",
+  "Sigue aquello que resuene contigo 💛"
+];
+
+let paso = 0;
+
+function siguienteKa() {
+  paso++;
+
+  if (paso < mensajes.length) {
+    document.getElementById("ka-texto").innerText = mensajes[paso];
+  } else {
+    document.getElementById("ka-cuadro").style.display = "none";
+  }
+}
+
+document.body.addEventListener("click", () => {
+  document.getElementById("sonidoAmbiente").play();
+}, { once: true });
+
+</script>
+
+<audio id="sonidoAmbiente" loop preload="auto">
+  <source src="bosque.mp3" type="audio/mpeg">
+</audio>
+</body>
+</html>

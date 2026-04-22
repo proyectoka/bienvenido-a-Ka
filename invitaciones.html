@@ -3,188 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tienda Yelioki – Ka</title>
+<title>Taller de Invitaciones – Yelioki</title>
 
 <style>
-body {
+
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
-  background-image: url('fondo_vitrina.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.2);
-  z-index: 0;
-}
-
-/* VOLVER */
-.volver {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  z-index: 10;
-}
-
-/* HEADER */
-.header-tienda {
-  text-align: center;
-  margin-top: 20px;
-  position: relative;
-  z-index: 2;
-}
-.logo { width: 200px; }
-
-/* ESCENA FLEX */
-.escena {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  height: 80vh;
-  position: relative;
-  z-index: 2;
-  flex-wrap: wrap;
-}
-
-/* VITRINAS */
-.vitrina {
-  width: 230px;
-  border-radius: 20px;
+body {
+  height: 100vh;
   overflow: hidden;
-  cursor: pointer;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.3);
-  box-shadow: 0 0 10px rgba(255,255,255,0.2),
-              0 0 25px rgba(72,178,186,0.3),
-              0 10px 30px rgba(0,0,0,0.2);
-  animation: flotar 6s ease-in-out infinite;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background: radial-gradient(circle at top, #1b2a3a, #05070c);
+  color: white;
+}
+
+/* 🌙 CONTENEDOR */
+.mundo {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.vitrina video { width: 100%; display: block; }
-
-.vitrina span {
-  display: block;
-  padding: 10px;
   text-align: center;
-  font-size: 14px;
 }
 
-.vitrina:hover {
-  transform: scale(1.2) translateY(-10px);
-  z-index: 5;
-  box-shadow:
-    0 0 25px rgba(255,255,255,0.6),
-    0 0 50px rgba(253,190,80,0.8),
-    0 20px 60px rgba(0,0,0,0.4);
+/* ✉️ TÍTULO */
+h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
 }
 
-/* FLOTAR */
+p {
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+
+/* 🪄 MESA MÁGICA */
+.mesa {
+  width: 320px;
+  height: 190px;
+  background: linear-gradient(145deg, #FDBE50, #48B2BA);
+  border-radius: 25px;
+  box-shadow: 0 0 40px rgba(255,255,255,0.2);
+  animation: flotar 3s ease-in-out infinite;
+  margin-bottom: 25px;
+}
+
 @keyframes flotar {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
-/* FLASH */
-#flash {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:white;
-  opacity:0;
-  pointer-events:none;
-  transition: opacity 0.6s ease;
-  z-index:15;
+/* ✨ ELEMENTOS DECORATIVOS */
+.sobre {
+  width: 60px;
+  height: 40px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  opacity: 0.8;
+  animation: flotar 4s infinite;
 }
 
-#flash.active { opacity:1; }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .vitrina { width: 180px; }
-  .escena { gap: 40px; }
+.sello {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #FDBE50;
+  position: absolute;
+  top: 35%;
+  right: 28%;
+  box-shadow: 0 0 20px #FDBE50;
+  animation: flotar 3.5s infinite;
 }
+
+/* 🔙 BOTÓN */
+button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 20px;
+  background: #48B2BA;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
 </style>
+
 </head>
 
 <body>
 
-<a class="volver" href="index.html">← Volver a Ka</a>
+<div class="mundo">
 
-<div class="header-tienda">
-  <img src="logo_yelioki.png" class="logo">
-  <p>Creaciones mágicas que conectan emociones ✨</p>
-</div>
+<h1>✉️ Taller de Invitaciones Premium</h1>
 
-<div class="escena">
+<p>Donde cada sobre nace con magia</p>
 
-  <!-- VITRINA 1 -->
-  <div class="vitrina" onclick="abrirPortal(this, event)">
-    <video autoplay muted loop playsinline>
-      <source src="video_invitaciones.mp4" type="video/mp4">
-    </video>
-    <span>💌 Invitaciones</span>
-  </div>
+<div class="mesa"></div>
 
-  <!-- VITRINA 2 -->
-  <div class="vitrina" onclick="abrirPortal2(this, event)">
-    <video autoplay muted loop playsinline>
-      <source src="video_plantillas.mp4" type="video/mp4">
-    </video>
-    <span>🎨 Plantillas digitales</span>
-  </div>
+<!-- elementos mágicos -->
+<div class="sobre"></div>
+<div class="sello"></div>
 
-  <!-- VITRINA 3 -->
-  <div class="vitrina" onclick="abrirPortal3(this, event)">
-    <video autoplay muted loop playsinline>
-      <source src="video_3d.mp4" type="video/mp4">
-    </video>
-    <span>🧱 Modelos 3D</span>
-  </div>
+<button onclick="volver()">⬅ Volver al Tepuy</button>
 
 </div>
-
-<div id="flash"></div>
 
 <script>
-function abrirPortal(el, e){
-  e.stopPropagation();
-  const flash = document.getElementById("flash");
-  el.style.animation = "none";
-  el.classList.add("portal-activo");
-  setTimeout(()=>{ flash.classList.add("active"); }, 400);
-  setTimeout(()=>{ window.location.href="galeria.html"; }, 1200);
+
+function volver() {
+  window.location.href = "yelioki.html"; 
+  // 👆 tu mundo principal (Yelioki Central)
 }
-function abrirPortal2(el, e){
-  e.stopPropagation();
-  const flash = document.getElementById("flash");
-  el.classList.add("portal-activo");
-  setTimeout(()=>{ flash.classList.add("active"); }, 400);
-  setTimeout(()=>{ window.location.href="plantillas.html"; }, 1200);
-}
-function abrirPortal3(el, e){
-  e.stopPropagation();
-  const flash = document.getElementById("flash");
-  el.classList.add("portal-activo");
-  setTimeout(()=>{ flash.classList.add("active"); }, 400);
-  setTimeout(()=>{ window.location.href="modelos3d.html"; }, 1200);
-}
+
 </script>
 
 </body>

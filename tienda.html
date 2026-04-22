@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería de Tiendas Mágicas – Universo Ka</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #0f1d2e;
+}
+
+/* FONDO */
+.galeria {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-image: url("galeria-fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* CAPA SUAVE */
+.capa {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 20, 30, 0.25);
+}
+
+/* TITULO */
+.titulo {
+  position: absolute;
+  top: 6%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  z-index: 5;
+}
+
+.titulo h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.titulo p {
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+/* TIENDAS */
+.tienda {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.4s;
+  z-index: 4;
+}
+
+.tienda:hover {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 25px #FFD700);
+}
+
+/* POSICIONES */
+.t1 { top: 22%; left: 12%; }
+.t2 { top: 22%; right: 12%; }
+
+.t3 { top: 48%; left: 8%; }
+.t4 { top: 48%; right: 8%; }
+
+.t5 { bottom: 14%; left: 22%; }
+.t6 { bottom: 14%; right: 22%; }
+
+/* YELIOKI CENTRAL */
+.yelioki-central {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 260px;
+  background-image: url("yelioki-central.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 3;
+  animation: flotar 4s ease-in-out infinite;
+}
+
+@keyframes flotar {
+  0%,100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+}
+
+/* TOOLTIP */
+.tooltip {
+  position: absolute;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+/* KA */
+#ka-ui {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+}
+
+#ka-luz {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #48B2BA, transparent);
+  box-shadow: 0 0 30px #48B2BA;
+  margin: auto;
+}
+
+#ka-cuadro {
+  margin-top: 10px;
+  background: rgba(0,0,0,0.45);
+  padding: 14px;
+  border-radius: 16px;
+  color: white;
+  width: 330px;
+  backdrop-filter: blur(6px);
+}
+
+#ka-cuadro button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #FDBE50;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .titulo h1 {
+    font-size: 28px;
+  }
+
+  .tienda {
+    width: 120px;
+    height: 120px;
+  }
+
+  .yelioki-central {
+    width: 180px;
+    height: 180px;
+    top: 40%;
+  }
+
+  .t1 { top: 18%; left: 10%; }
+  .t2 { top: 18%; right: 10%; }
+
+  .t3 { top: 45%; left: 2%; }
+  .t4 { top: 45%; right: 2%; }
+
+  .t5 { bottom: 20%; left: 12%; }
+  .t6 { bottom: 20%; right: 12%; }
+
+  #ka-ui {
+    bottom: 2%;
+    transform: translateX(-50%) scale(0.92);
+  }
+}
+/* AVATAR */
+.avatar-usuario {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 8;
+  transition: all 1s ease;
+}
+
+.nombre-usuario {
+  position: absolute;
+  bottom: 12%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  z-index: 8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="galeria">
+
+<div class="capa"></div>
+
+<div class="titulo">
+  <h1>Galería de Tiendas Mágicas ✨</h1>
+  <p>Donde cada tienda guarda una historia</p>
+</div>
+
+<!-- TIENDA CENTRAL -->
+<div class="yelioki-central"></div>
+
+<!-- TIENDAS -->
+<div class="tienda t1"
+style="background-image: url('tienda-yelioki.png');"
+data-nombre="Yelioki"
+data-destino="yelioki.html"></div>
+
+<div class="tienda t2"
+style="background-image: url('local-01.png');"
+data-nombre="Local Disponible 01"
+data-destino=""></div>
+
+<div class="tienda t3"
+style="background-image: url('local-02.png');"
+data-nombre="Local Disponible 02"
+data-destino=""></div>
+
+<div class="tienda t4"
+style="background-image: url('taller-creadores.png');"
+data-nombre="Taller de Creadores"
+data-destino=""></div>
+
+<div class="tienda t5"
+style="background-image: url('llaves-antiguas.png');"
+data-nombre="Cámara de Llaves"
+data-destino=""></div>
+
+<div class="tienda t6"
+style="background-image: url('invitaciones-premium.png');"
+data-nombre="Casa de Invitaciones Premium"
+data-destino=""></div>
+
+<!-- TOOLTIP -->
+<div class="tooltip" id="tooltip"></div>
+
+<!-- AVATAR -->
+<div class="avatar-usuario" id="avatarUsuario"></div>
+<div class="nombre-usuario" id="nombreUsuario"></div>
+<!-- KA -->
+<div id="ka-ui">
+  <div id="ka-luz"></div>
+
+  <div id="ka-cuadro">
+    <p id="ka-texto">
+      Bienvenida… aquí las ideas se convierten en tesoros ✨
+    </p>
+    <button onclick="siguienteKa()">Continuar</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+
+const tooltip = document.getElementById("tooltip");
+const avatarUsuario = document.getElementById("avatarUsuario");
+
+/* TOOLTIPS + MOVIMIENTO DEL AVATAR */
+document.querySelectorAll(".tienda").forEach(tienda => {
+
+  /* Mostrar nombre */
+  tienda.addEventListener("mouseenter", (e) => {
+    tooltip.innerText = tienda.dataset.nombre;
+    tooltip.style.left = e.pageX + "px";
+    tooltip.style.top = e.pageY + "px";
+    tooltip.style.opacity = 1;
+  });
+
+  /* Seguir mouse */
+  tienda.addEventListener("mousemove", (e) => {
+    tooltip.style.left = e.pageX + "px";
+    tooltip.style.top = e.pageY + "px";
+  });
+
+  /* Ocultar */
+  tienda.addEventListener("mouseleave", () => {
+    tooltip.style.opacity = 0;
+  });
+
+  /* CLICK → avatar camina */
+  tienda.addEventListener("click", () => {
+
+    const rect = tienda.getBoundingClientRect();
+
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    avatarUsuario.style.left = x + "px";
+    avatarUsuario.style.top = y + "px";
+    avatarUsuario.style.bottom = "auto";
+    avatarUsuario.style.transform = "translate(-50%, -50%)";
+
+    const destino = tienda.dataset.destino;
+
+    setTimeout(() => {
+      if (destino) {
+        window.location.href = destino;
+      }
+    }, 1200);
+
+  });
+
+});
+
+
+/* MENSAJES DE KA */
+
+let mensajes = [
+  "Bienvenida a la Galería de Tiendas Mágicas ✨",
+  "Aquí cada tienda guarda una esencia distinta…",
+  "Pero una de ellas… nació directamente de ti 💛",
+  "Yelioki no es solo una tienda… es tu universo hecho realidad 🌙"
+];
+
+let paso = 0;
+
+function siguienteKa() {
+  paso++;
+
+  if (paso < mensajes.length) {
+    document.getElementById("ka-texto").innerText = mensajes[paso];
+  } else {
+    document.getElementById("ka-cuadro").style.display = "none";
+  }
+}
+
+
+/* SONIDO */
+
+window.addEventListener("load", () => {
+  document.body.addEventListener("click", () => {
+    const audio = document.getElementById("sonidoAmbiente");
+    audio.play().catch(() => {});
+  }, { once: true });
+});
+
+
+/* AVATAR DEL USUARIO */
+
+const avatar = document.getElementById("avatarUsuario");
+const nombre = document.getElementById("nombreUsuario");
+
+const nombreGuardado = localStorage.getItem("nombreAvatar");
+const personaje = localStorage.getItem("personajeAvatar");
+
+nombre.textContent = nombreGuardado || "Viajera";
+
+if (personaje) {
+  const img = document.createElement("img");
+  img.src = personaje;
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.borderRadius = "50%";
+  avatar.appendChild(img);
+} else {
+  avatar.style.background = "#FDBE50";
+}
+
+</script>
+<audio id="sonidoAmbiente" loop preload="auto">
+  <source src="bosque.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
